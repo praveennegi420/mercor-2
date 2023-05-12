@@ -1,10 +1,11 @@
 import { motion, useScroll } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react'; 
+import { useState, useRef, useEffect } from 'react';
 
 function App() {
 
     const [item, setItem] = useState(1);
     const [activeIndex, setActiveIndex] = useState(0)
+    const [firstIndex, setFirstIndex] = useState(0)
     const targetRef = useRef(null)
     const { scrollYProgress } = useScroll({ target: targetRef })
 
@@ -26,7 +27,10 @@ function App() {
         setTimeout(() => { setActiveIndex((activeIndex + 1) % 3) }, 2000)
     }, [activeIndex])
 
-    console.log(activeIndex);
+    useEffect(() => {
+        setTimeout(() => { setFirstIndex((firstIndex + 1) % 3) }, 4000)
+    }, [firstIndex])
+    // console.log(firstIndex)
     return (
         <>
             <section ref={targetRef} className="section font-custom ">
@@ -48,67 +52,54 @@ function App() {
                                     <div className="p-2 pb-0">
                                         <div><div>
                                             <div className='p-20 py-[8rem]'>
-                                                <div className='absolute top-[16rem] left-[6rem]'>
+                                                <div className='absolute top-[15rem]'>
                                                     <motion.span
-                                                        style={{ display: activeIndex === 0 ? 'block' : 'none' }}
+                                                        style={{ display: firstIndex === 0 ? 'block' : 'none' }}
                                                     >
-                                                        <motion.span
-                                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                                                            transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-                                                            className='bg-lameWhite font-bold p-2 pt-8 text-black text-[1rem] pr-16 ml-[1rem] rounded-[8px]'>Shift
-                                                        </motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                                                            transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-                                                            className='bg-lameBlack font-thin p-1.5 text-lameWhite text-[0.7rem] px-4 w-[200px] top-[-5rem] absolute left-[2rem] ml-[1rem] rounded-full'>Tidy up and organise all blocks.
-                                                        </motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                                                            transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-                                                            className='bg-lameWhite px-5 p-3 font-bold top-[-1.77rem] text-[1.4rem] left-[8.5rem] absolute text-black rounded-[8px]'>#</motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                                                            transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-                                                            className='bg-lameWhite font-bold px-5 top-[-1.77rem] text-[1.4rem] left-[12.5rem] p-3 absolute text-black rounded-[8px]'>T</motion.span>
+                                                        <div className='flex gap-3'>
+                                                            <img  className='w-[150px] h-auto shiftImg' src='/shift.svg' />
+                                                            <img className='w-[70px] h-auto func-img' src='/func.svg' />
+                                                            <img className='w-[70px] h-auto capt-img' src='/capT.svg' />
+                                                        </div>
+                                                        <div className='flex absolute gap-[7px] top-[-0.2em] svg-1'>
+                                                            <svg className='w-[155px] rounded-[5px]'><rect className='w-[149px] h-[70px] rounded-[25px] shift'></rect></svg>
+                                                            <svg className='w-[75px] rounded-[5px]'><rect className='w-[70px] h-[68px] rounded-[15px] func'></rect></svg>
+                                                            <svg className='w-[75px]'><rect className='w-[70px] h-[68px] rounded-[15px] capt'></rect></svg>
+                                                        </div>
+
+                                                        <img className='w-[220px] top-[-3.3em] left-[3.7em] tidy absolute' src='./tidy.png' />
                                                     </motion.span>
-                                                    <motion.span style={{ display: activeIndex === 1 ? 'block' : 'none' }}>
-                                                        <motion.span
-                                                            initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 10 }}
-                                                            transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-                                                            className='bg-lameBlack font-thin p-1.5 text-lameWhite text-[0.7rem] px-4 w-[130px] top-[-5rem] absolute left-[3rem] ml-[1rem] rounded-full'>Select your blocks
-                                                        </motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }}
-                                                            transition={{ duration: 2, delay: 2, ease: 'easeInOut', repeat: Infinity }}
-                                                            className='bg-lameWhite px-5 p-3 font-bold top-[-1.77rem] text-[1.4rem] left-[0.7rem] absolute text-black rounded-[8px]'>#</motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
-                                                            transition={{ duration: 2, delay: 2, ease: 'easeInOut', repeat: Infinity }}
-                                                            className='bg-lameWhite font-bold px-5 top-[-1.77rem] text-[1.4rem] left-[4.5rem] p-3 absolute text-black rounded-[8px]'>1</motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                                                            transition={{ duration: 2, delay: 2, ease: 'easeInOut', repeat: Infinity }}
-                                                            className='bg-lameWhite font-bold px-5 top-[-1.77rem] text-[1.4rem] left-[8.5rem] p-3 absolute text-black rounded-[8px]'>2</motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                                                            transition={{ duration: 2, delay: 2, ease: 'easeInOut', repeat: Infinity }}
-                                                            className='bg-lameWhite font-bold px-5 top-[-1.77rem] text-[1.4rem] left-[12.5rem] p-3 absolute text-black rounded-[8px]'>3</motion.span>
-                                                    </motion.span>
-                                                    <motion.span style={{ display: activeIndex === 2 ? 'block' : 'none' }}>
                                                     <motion.span
-                                                            initial={{ opacity: 0}} animate={{ opacity:1}}
-                                                            transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
-                                                            className='bg-lameBlack font-thin p-1.5 text-lameWhite text-[0.7rem] px-4 w-[130px] top-[-5rem] absolute left-[3rem] ml-[1rem] rounded-full'>Create new block
-                                                        </motion.span>
-                                                        <motion.span
-                                                            initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }}
-                                                            transition={{ duration: 2, delay: 4, ease: 'easeInOut', repeat: Infinity }}
-                                                            className='bg-lameWhite font-bold p-2 px-6  top-[-1.77rem] text-[1.4rem] left-[7rem] absolute text-black rounded-[8px]'>/</motion.span>
+                                                    style={{ display: firstIndex === 1 ? 'block' : 'none' }}
+                                                    >
+                                                        <div className='flex gap-3'>
+                                                            <motion.img className='w-[70px] h-auto secFunc' src='/func.svg' />
+                                                            <motion.img className='w-[70px] h-auto func-img' src='/num1.svg' />
+                                                            <motion.img className='w-[70px] h-auto func-img' src='/num2.svg' />
+                                                            <motion.img className='w-[70px] h-auto func-img' src='/num3.svg' />
+                                                        </div>
+                                                        <div className='flex absolute gap-[7px] top-[0em] svg-1'>
+                                                            <svg className='w-[75px] rounded-[5px]'><rect className='w-[70px] h-[68px] rounded-[15px] dely-1'></rect></svg>
+                                                            <svg className='w-[75px] rounded-[5px]'><rect className='w-[70px] h-[68px] rounded-[15px] dely-2'></rect></svg>
+                                                            <svg className='w-[75px] rounded-[5px]'><rect className='w-[70px] h-[68px] rounded-[15px] dely-3'></rect></svg>
+                                                            <svg className='w-[75px]'><rect className='w-[70px] h-[68px] rounded-[15px] dely-4'></rect></svg>
+                                                        </div>
+
+                                                        <motion.img className='w-[150px] top-[-3em] left-[6em] tidy absolute' src='./select.svg' />
+                                                    </motion.span>
+                                                    <motion.span className='svg-1'
+                                                        style={{ display: firstIndex === 2 ? 'block' : 'none' }}
+                                                    >
+                                                        <motion.img className='w-[140px] top-[-3.4em] left-[5em] shiftImg absolute' src='./rename.png' />
+                                                        <motion.img className='w-[65px] ml-[7em] h-auto secFunc' src='/spec.svg' />
+                                                        <svg className='w-[75px] absolute top-[0em] left-[7em] rounded-[5px]'><rect className='w-[65px] h-[64px] rounded-[15px] func'></rect></svg>
                                                     </motion.span>
                                                 </div>
 
                                             </div></div></div>
                                     </div>
+
+
                                     <div className="box__head px-10 pb-16 text-center">
                                         <h3 className="mb-4 text-[2.3rem]">A keyboard<br />first experience.</h3>
                                         <p className="text-mid px-[10px]">Powerful shortcuts and a keyboard-first workflow means you will get to your finish line in no time!</p>
@@ -263,8 +254,8 @@ function App() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </div >
+            </section >
         </>
     )
 }

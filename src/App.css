@@ -157,6 +157,109 @@ p.text-mid {
   border-radius: 1.25rem;
 }
 
+.svg-1 svg, .svg-1 svg rect{
+  fill: transparent;
+}
+
+.svg-1 svg rect{
+  fill: none; 
+  stroke: #9784f2; 
+  stroke-width: 4;
+  stroke-dasharray: 450;
+  stroke-linecap: butt;
+  stroke-miterlimit: 4;
+  stroke-linejoin: miter;
+  stroke-dashoffset: 450;
+}
+
+
+.shiftImg{
+  animation: fadeIn 1s ease-in forwards;
+}
+
+.func-img{
+  animation: fadeIn 1.5s ease-in forwards;
+}
+
+.capt-img{
+  animation: fadeIn 2s ease-in forwards; 
+}
+
+.dely-1{animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 0.8s;}
+.dely-2{ animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 1.4s;}
+.dely-3{animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 2.5s;}
+.dely-4{animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 3s;}
+
+@keyframes fadeIn{
+  from {
+    opacity: 0;
+    transform: translateY(25%);
+  } 
+  to{
+    opacity: 1;
+    transform: translateY(0%);
+  } 
+}
+
+
+.shift{
+  animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 1s;
+}
+
+.func{
+  animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 2s;
+}
+
+.capt{
+  animation: shiftHigh 0.7s linear forwards;
+  animation-delay: 3s;
+}
+
+.tidy{
+  animation: fadeOut 1.2s linear forwards;
+}
+
+.secFunc{
+  animation: crossFade 1s linear forwards;
+}
+
+@keyframes crossFade {
+  from {
+    transform: translateX(45%);
+  } 
+  to{
+    transform: translateX(0%);
+  } 
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 0;
+    transform: translateY(-15%);
+  } 
+  to{
+    opacity: 1;
+    transform: translateY(0%);
+  } 
+}
+
+@keyframes shiftHigh {
+  0%{
+    stroke-dashoffset: 450;
+  } 
+  80%{
+    stroke-dashoffset: 0;
+  }
+  100%{ stroke-dashoffset: 450;}
+}
+
+
 
 @media (min-width: 860px){
   .stacked_head__r8uz7>div {
